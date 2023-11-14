@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
 // Sans Serif Font Import
 const raleway = Raleway({
-  weight: '400',
   subsets: ['latin'],
   variable: '--font-raleway',
 });

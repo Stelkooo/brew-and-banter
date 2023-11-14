@@ -43,17 +43,19 @@
   }
   h1,
   h2,
-  h3,
-  h4 {
+  h3 {
     @apply font-sans;
   }
-  h1 {
+  h1,
+  .as-h1 {
     @apply text-[4.236rem]/none font-extrabold tracking-tight;
   }
-  h2 {
+  h2,
+  .as-h2 {
     @apply text-[2.618rem]/none font-semibold tracking-tight;
   }
-  h3 {
+  h3,
+  .as-h3 {
     @apply text-[1.618rem]/none font-semibold tracking-tight;
   }
   p {
