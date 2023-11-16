@@ -13,7 +13,12 @@ export type TLink = {
   phone?: string;
 };
 
-export type TSocialType = 'linkedin' | 'facebook' | 'twitter' | 'instagram';
+export type TSocialType =
+  | 'linkedin'
+  | 'facebook'
+  | 'twitter'
+  | 'instagram'
+  | 'youtube';
 
 export type TSocial = {
   _key?: string;

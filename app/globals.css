@@ -34,10 +34,6 @@
   ::selection {
     @apply bg-accent text-accent-foreground;
   }
-  html,
-  body {
-    @apply min-h-[100dvh];
-  }
   body {
     @apply bg-background text-foreground;
   }

@@ -27,7 +27,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(lora.variable, raleway.variable)}>
+      <body
+        className={cn(
+          lora.variable,
+          raleway.variable,
+          'min-h-[100dvh] overflow-x-hidden'
+        )}
+      >
         <GlobalLazyMotion>
           {draftMode().isEnabled ? (
             <PreviewProvider token={token as string}>
