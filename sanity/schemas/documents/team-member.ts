@@ -32,13 +32,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      name: 'name',
       image: 'image',
+      jobTitle: 'jobTitle',
     },
-    prepare({ title, image }) {
+    prepare({ name, image, jobTitle }) {
       return {
-        title,
-        subtitle: TITLE,
+        title: name,
+        subtitle: jobTitle,
         media: image,
       };
     },

@@ -1,3 +1,4 @@
+import { User2 } from 'lucide-react';
 import { defineType, defineField } from 'sanity';
 
 export default defineType({
@@ -24,6 +25,7 @@ export default defineType({
       return {
         title: name,
         subtitle: 'Testimonial',
+        media: User2,
       };
     },
   },

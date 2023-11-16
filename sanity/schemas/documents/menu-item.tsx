@@ -32,7 +32,6 @@ export default defineType({
     prepare({ title, image }) {
       return {
         title,
-        subtitle: TITLE,
         media: image,
       };
     },
