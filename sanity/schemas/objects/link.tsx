@@ -64,32 +64,33 @@ export default defineField({
     }),
     defineField({
       title: 'Type of link',
-      name: 'type',
+      name: 'linkType',
       type: 'string',
-      validation: (rule) => rule.required(),
       options: {
         list: ['internal', 'external', 'email', 'phone'],
+        layout: 'radio',
       },
+      initialValue: 'internal',
     }),
     defineField({
       title: 'URL',
       name: 'url',
       description: 'URL of external page to take users to',
       type: 'url',
-      hidden: ({ parent }) => parent.type !== 'external',
+      hidden: ({ parent }) => parent?.linkType !== 'external',
     }),
     defineField({
       name: 'reference',
       description: 'Reference to internal page to take users to',
       type: 'reference',
       to: [{ type: 'page' }, { type: 'home' }, { type: 'blog' }],
-      hidden: ({ parent }) => parent.type !== 'internal',
+      hidden: ({ parent }) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'email',
       description: 'Email address for users to contact',
       type: 'string',
-      hidden: ({ parent }) => parent.type !== 'email',
+      hidden: ({ parent }) => parent?.linkType !== 'email',
       validation: (rule) => rule.email(),
     }),
     defineField({
@@ -97,26 +98,29 @@ export default defineField({
       name: 'phone',
       description: 'Phone number for users to contact',
       type: 'string',
-      hidden: ({ parent }) => parent.type !== 'phone',
+      hidden: ({ parent }) => parent?.linkType !== 'phone',
     }),
   ],
+  initialValue: {
+    linkType: 'internal',
+  },
   preview: {
     select: {
       title: 'title',
       url: 'url',
-      type: 'type',
+      linkType: 'linkType',
       email: 'email',
       phone: 'phone',
       reference: 'reference.slug.current',
     },
-    prepare({ url, title, email, phone, type, reference }) {
+    prepare({ url, title, email, phone, linkType, reference }) {
       return {
         title,
         subtitle: getSubtitle(
-          type,
-          getValue(type, url, email, phone, reference)
+          linkType,
+          getValue(linkType, url, email, phone, reference)
         ),
-        media: getIcon(type),
+        media: getIcon(linkType),
       };
     },
   },
