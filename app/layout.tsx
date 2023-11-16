@@ -5,6 +5,7 @@ import { draftMode } from 'next/headers';
 
 import { cn } from '@/lib/utils';
 import { token } from '@/sanity/lib/fetch';
+import GlobalLazyMotion from '@/components/global/global-lazy-motion.component';
 
 // Serif Font Import
 const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
@@ -27,11 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(lora.variable, raleway.variable)}>
-        {draftMode().isEnabled ? (
-          <PreviewProvider token={token}>{children}</PreviewProvider>
-        ) : (
-          children
-        )}
+        <GlobalLazyMotion>
+          {draftMode().isEnabled ? (
+            <PreviewProvider token={token as string}>
+              {children}
+            </PreviewProvider>
+          ) : (
+            children
+          )}
+        </GlobalLazyMotion>
       </body>
     </html>
   );

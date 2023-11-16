@@ -6,7 +6,9 @@ import { usePathname } from 'next/navigation';
 export default function Logo() {
   const pathname = usePathname();
   // Content to show as Logo
-  const Content = <span className="as-h3">Brew & Banter</span>;
+  const Content = (
+    <span className="as-h3 font-sans font-bold">Brew & Banter</span>
+  );
 
   // Only work as a link to Home page if not on it
   if (pathname === '/') {
