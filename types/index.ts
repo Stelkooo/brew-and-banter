@@ -69,7 +69,7 @@ export type TSeo = {
 export interface IBlogModule extends TBaseModule {
   blogType?: 'latest' | 'all' | 'similar';
   headline?: PortableTextBlock[];
-  posts: TBlog[];
+  posts?: TBlog[];
 }
 
 export interface IBodyModule extends TBaseModule {
@@ -121,11 +121,7 @@ export interface IGalleryModule extends TBaseModule {
 }
 
 export interface IHeroModule extends TBaseModule {
-  heroType?:
-    | 'text'
-    | 'contentImagesVertical'
-    | 'contentImagesHorizontal'
-    | 'contentAboveImages';
+  heroType?: 'text' | 'contentImages' | 'contentAboveImages';
   copy?: PortableTextBlock[];
   images?: TImage[];
 }
@@ -179,7 +175,7 @@ export interface ITimelineModule extends TBaseModule {
   timeline?: TTimeline[];
 }
 
-export type TModules =
+export type TModules = (
   | IBlogModule
   | IBodyModule
   | IContactModule
@@ -191,7 +187,8 @@ export type TModules =
   | IMenuModule
   | ITeamModule
   | ITestimonialsModule
-  | ITimelineModule;
+  | ITimelineModule
+)[];
 
 export type TBlog = {
   _id?: string;
@@ -199,7 +196,7 @@ export type TBlog = {
   slug?: Slug;
   thumbnail?: TImage;
   copy?: PortableTextBlock[];
-  modules: TModules[];
+  modules: TModules;
   seo?: TSeo;
 };
 

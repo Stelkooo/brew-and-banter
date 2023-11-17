@@ -4,8 +4,8 @@ import type { QueryParams } from '@sanity/client';
 import { draftMode } from 'next/headers';
 
 import client from './client';
-import { TSiteSettings } from '@/types';
-import { siteQuery } from './queries';
+import { THome, TSiteSettings } from '@/types';
+import { homeQuery, siteQuery } from './queries';
 
 export const token = process.env.SANITY_API_READ_TOKEN;
 
@@ -42,4 +42,8 @@ export async function sanityFetch<QueryResponse>({
 
 export async function getSiteSettings(): Promise<TSiteSettings> {
   return sanityFetch<TSiteSettings>({ query: siteQuery, tags: ['site'] });
+}
+
+export async function getHomePage(): Promise<THome> {
+  return sanityFetch<THome>({ query: homeQuery, tags: ['home'] });
 }

@@ -16,12 +16,8 @@ export default defineField({
         list: [
           'text',
           {
-            title: 'Content / Images Vertical',
-            value: 'contentImagesVertical',
-          },
-          {
-            title: 'Content / Images Horizontal',
-            value: 'contentImagesHorizontal',
+            title: 'Content / Images',
+            value: 'contentImages',
           },
           { title: 'Content Above Images', value: 'contentAboveImages' },
         ],
@@ -49,23 +45,18 @@ export default defineField({
       type: 'array',
       of: [defineArrayMember({ type: 'customImage' })],
       hidden: ({ parent }) =>
-        parent.heroType !== 'contentImages' ||
+        parent.heroType !== 'contentImages' &&
         parent.heroType !== 'contentAboveImages',
-      validation: (rule) => rule.max(8).required(),
+      validation: (rule) => rule.max(8),
     }),
   ],
   initialValue: {
-    type: 'text',
+    heroType: 'text',
   },
   preview: {
-    select: {
-      copy: 'copy',
-      type: 'heroType',
-    },
-    prepare({ copy, type }) {
+    prepare() {
       return {
-        title: copy,
-        subtitle: `${TITLE} - ${type.title}`,
+        title: TITLE,
         media: Wallpaper,
       };
     },

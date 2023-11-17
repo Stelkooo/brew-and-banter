@@ -44,10 +44,71 @@ const headerQuery = groq`
   }
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export const siteQuery = groq`
   {
     ${footerQuery},
     ${headerQuery},
+  }
+`;
+
+const imageQuery = groq`
+  _key,
+  alt,
+  asset-> {
+    ...,
+    metadata,
+  },
+  sizes
+`;
+
+const buttonQuery = groq`
+  ...,
+  reference-> {
+    _type,
+    slug,
+  }
+`;
+
+const modulesArrayQuery = groq`
+  _type == "heroModule" => {
+    _key,
+    _type,
+    copy[] {
+      ...,
+      _type == "cta" => {
+        ${buttonQuery},
+      },
+    },
+    heroType,
+    heroType == "contentImages" => {
+      images[] {
+        ${imageQuery},
+      },
+    },
+    heroType == "contentAboveImages" => {
+      images[] {
+        ${imageQuery},
+      },
+    },
+  },
+`;
+
+const modulesQuery = groq`
+  modules[] {
+    ...,
+    defined(_ref) => {
+      ...@->modules[0] {
+        ${modulesArrayQuery}
+      },
+    },
+    !defined(_ref) => {
+      ${modulesArrayQuery}
+    },
+  }
+`;
+
+export const homeQuery = groq`
+  *[_type == "home"][0] {
+    ${modulesQuery},
   }
 `;

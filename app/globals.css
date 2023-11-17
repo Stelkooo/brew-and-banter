@@ -44,15 +44,15 @@
   }
   h1,
   .as-h1 {
-    @apply text-[4.236rem]/none font-extrabold tracking-tight;
+    @apply text-[2.618rem]/none font-extrabold tracking-tight md:text-[4.236rem]/none;
   }
   h2,
   .as-h2 {
-    @apply text-[2.618rem]/none font-semibold tracking-tight;
+    @apply text-[1.618rem]/none font-semibold tracking-tight md:text-[2.618rem]/none;
   }
   h3,
   .as-h3 {
-    @apply text-[1.618rem]/none font-semibold tracking-tight;
+    @apply font-semibold tracking-tight md:text-[1.618rem]/none;
   }
   p {
     @apply leading-7;
