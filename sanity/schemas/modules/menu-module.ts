@@ -9,22 +9,6 @@ export default defineField({
   type: 'object',
   fields: [
     defineField({
-      title: 'Menu Type',
-      name: 'menuType',
-      type: 'string',
-      options: {
-        list: [
-          { title: '2 Menu Items', value: 'twoMenuItems' },
-          { title: '3 Menu Items', value: 'threeMenuItems' },
-          { title: '4 Menu Items', value: 'fourMenuItems' },
-          { title: '5 Menu Items', value: 'fiveMenuItems' },
-        ],
-        layout: 'radio',
-        direction: 'vertical',
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'headline',
       type: 'array',
       of: [
@@ -41,21 +25,17 @@ export default defineField({
       of: [
         defineArrayMember({ type: 'reference', to: [{ type: 'menuItem' }] }),
       ],
-      validation: (rule) => rule.max(5).required(),
+      validation: (rule) => rule.min(2).max(5).required(),
     }),
   ],
-  initialValue: {
-    type: 'twoMenuItems',
-  },
   preview: {
     select: {
       headline: 'headline',
-      type: 'menuType',
     },
-    prepare({ type, headline }) {
+    prepare({ headline }) {
       return {
         title: headline,
-        subtitle: `${TITLE} - ${type.title}`,
+        subtitle: TITLE,
         media: MenuSquare,
       };
     },

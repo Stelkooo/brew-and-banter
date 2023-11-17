@@ -15,7 +15,14 @@ export default defineField({
       options: {
         list: [
           'text',
-          { title: 'Content / Images', value: 'contentImages' },
+          {
+            title: 'Content / Images Vertical',
+            value: 'contentImagesVertical',
+          },
+          {
+            title: 'Content / Images Horizontal',
+            value: 'contentImagesHorizontal',
+          },
           { title: 'Content Above Images', value: 'contentAboveImages' },
         ],
         layout: 'radio',

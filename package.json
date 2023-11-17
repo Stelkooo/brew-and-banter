@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^3.0.11",
+    "@portabletext/types": "^2.0.8",
     "@radix-ui/react-slot": "^1.0.2",
     "@sanity/client": "6.8.5",
     "@sanity/icons": "2.0",
