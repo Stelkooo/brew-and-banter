@@ -1,5 +1,5 @@
 import { ListItemBuilder } from 'sanity/desk';
-import { Home, Files, Puzzle } from 'lucide-react';
+import { Files, Puzzle } from 'lucide-react';
 
 import defineStructure from '../utils/define-structure';
 
@@ -11,10 +11,7 @@ export default defineStructure<ListItemBuilder>((S) =>
       S.list()
         .title('Pages')
         .items([
-          S.listItem()
-            .title('Home')
-            .child(S.editor().id('home').schemaType('home').documentId('home'))
-            .icon(Home),
+          S.documentListItem().id('home').schemaType('home'),
           S.divider(),
           S.listItem()
             .title('Other Pages')

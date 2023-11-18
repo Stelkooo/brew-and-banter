@@ -2,15 +2,12 @@ import 'server-only';
 
 import type { QueryParams } from '@sanity/client';
 import { draftMode } from 'next/headers';
-
-import client from './client';
-import { THome, TSiteSettings } from '@/types';
-import { homeQuery, siteQuery } from './queries';
-
-export const token = process.env.SANITY_API_READ_TOKEN;
+import { client } from '@/sanity/lib/client';
 
 const DEFAULT_PARAMS = {} as QueryParams;
 const DEFAULT_TAGS = [] as string[];
+
+export const token = process.env.SANITY_API_READ_TOKEN;
 
 export async function sanityFetch<QueryResponse>({
   query,
@@ -19,7 +16,7 @@ export async function sanityFetch<QueryResponse>({
 }: {
   query: string;
   params?: QueryParams;
-  tags: string[];
+  tags?: string[];
 }): Promise<QueryResponse> {
   const isDraftMode = draftMode().isEnabled;
   if (isDraftMode && !token) {
@@ -27,23 +24,17 @@ export async function sanityFetch<QueryResponse>({
       'The `SANITY_API_READ_TOKEN` environment variable is required.'
     );
   }
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
   return client.fetch<QueryResponse>(query, params, {
+    cache: isDevelopment || isDraftMode ? undefined : 'force-cache',
     ...(isDraftMode && {
       token,
       perspective: 'previewDrafts',
     }),
     next: {
-      revalidate: isDraftMode ? 0 : false,
+      ...(isDraftMode && { revalidate: 30 }),
       tags,
     },
   });
-}
-
-export async function getSiteSettings(): Promise<TSiteSettings> {
-  return sanityFetch<TSiteSettings>({ query: siteQuery, tags: ['site'] });
-}
-
-export async function getHomePage(): Promise<THome> {
-  return sanityFetch<THome>({ query: homeQuery, tags: ['home'] });
 }

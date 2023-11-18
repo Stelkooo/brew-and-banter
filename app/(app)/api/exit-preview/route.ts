@@ -1,7 +1,8 @@
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function GET() {
+// eslint-disable-next-line import/prefer-default-export
+export async function GET() {
   draftMode().disable();
   redirect(`/`);
 }

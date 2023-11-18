@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { PanelTop } from 'lucide-react';
+import { Home } from 'lucide-react';
 
 const TITLE = 'Home Page';
 
@@ -25,7 +25,7 @@ export default defineType({
       return {
         title: TITLE,
         subtitle: '/',
-        media: PanelTop,
+        media: Home,
       };
     },
   },

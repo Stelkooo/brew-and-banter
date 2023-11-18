@@ -2,6 +2,7 @@ import './globals.css';
 import { Lora, Raleway } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { draftMode } from 'next/headers';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import { token } from '@/sanity/lib/fetch';
@@ -37,6 +38,9 @@ export default function RootLayout({
         <GlobalLazyMotion>
           {draftMode().isEnabled ? (
             <PreviewProvider token={token as string}>
+              <div className="fixed z-50 flex w-full justify-center bg-primary py-2 text-secondary">
+                <Link href="/api/exit-preview">Exit Preview</Link>
+              </div>
               {children}
             </PreviewProvider>
           ) : (
