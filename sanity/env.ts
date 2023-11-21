@@ -20,3 +20,5 @@ export const projectId = assertValue(
 );
 
 export const useCdn = false;
+
+export const token = process.env.SANITY_API_READ_TOKEN;

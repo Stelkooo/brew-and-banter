@@ -1,14 +1,14 @@
-import 'server-only';
+'use server';
 
 import type { QueryParams } from '@sanity/client';
 import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
+import { token } from '../env';
 
 const DEFAULT_PARAMS = {} as QueryParams;
 const DEFAULT_TAGS = [] as string[];
 
-export const token = process.env.SANITY_API_READ_TOKEN;
-
+// eslint-disable-next-line import/prefer-default-export
 export async function sanityFetch<QueryResponse>({
   query,
   params = DEFAULT_PARAMS,
