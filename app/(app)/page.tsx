@@ -9,9 +9,13 @@ import PreviewHomePage from '@/components/pages/home/preview-home.page';
 import { token } from '@/sanity/env';
 
 export default async function Home() {
-  // Fetch home page modules
-  const home = await sanityFetch<THome>({ query: homeQuery, tags: ['home'] });
   const isDraftMode = draftMode().isEnabled;
+  // Fetch home page modules
+  const home = await sanityFetch<THome>({
+    query: homeQuery,
+    tags: ['home'],
+    isDraftMode,
+  });
 
   if (isDraftMode && token)
     return (

@@ -112,3 +112,15 @@ export const homeQuery = groq`
     ${modulesQuery},
   }
 `;
+
+// Query for page contents
+export const pageQuery = groq`
+  *[_type == "page" && slug.current == $slug][0] {
+    ${modulesQuery},
+  }
+`;
+
+// Query for defined page slugs, ready for generateStaticParams()
+export const pageSlugs = groq`
+  *[_type == "page" && defined(slug.current)].slug.current
+`;

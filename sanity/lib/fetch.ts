@@ -1,7 +1,6 @@
 'use server';
 
 import type { QueryParams } from '@sanity/client';
-import { draftMode } from 'next/headers';
 import { client } from '@/sanity/lib/client';
 import { token } from '../env';
 
@@ -13,12 +12,13 @@ export async function sanityFetch<QueryResponse>({
   query,
   params = DEFAULT_PARAMS,
   tags = DEFAULT_TAGS,
+  isDraftMode = false,
 }: {
   query: string;
   params?: QueryParams;
   tags?: string[];
+  isDraftMode?: boolean;
 }): Promise<QueryResponse> {
-  const isDraftMode = draftMode().isEnabled;
   if (isDraftMode && !token) {
     throw new Error(
       'The `SANITY_API_READ_TOKEN` environment variable is required.'

@@ -204,3 +204,10 @@ export type THome = {
   modules?: TModules;
   seo?: TSeo;
 };
+
+export type TPage = {
+  modules?: TModules;
+  seo?: TSeo;
+  title?: string;
+  slug?: Slug;
+};
