@@ -23,8 +23,6 @@ export async function POST(req: NextRequest) {
 
     const tagsToRevalidate = [];
 
-    console.log(body._type);
-
     switch (body._type) {
       case 'home':
         tagsToRevalidate.push('home');
