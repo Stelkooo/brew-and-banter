@@ -5,7 +5,7 @@ import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
-import { token } from '@/sanity/lib/fetch';
+import { token } from '@/sanity/env';
 import GlobalLazyMotion from '@/components/global/global-lazy-motion.component';
 
 // Serif Font Import

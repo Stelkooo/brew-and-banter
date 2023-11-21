@@ -2,10 +2,11 @@ import { draftMode } from 'next/headers';
 
 import { homeQuery } from '@/sanity/lib/queries';
 import HomePage from '@/components/pages/home/home.page';
-import { sanityFetch, token } from '@/sanity/lib/fetch';
+import { sanityFetch } from '@/sanity/lib/fetch';
 import { THome } from '@/types';
 import PreviewProvider from '@/components/global/preview-provider.component';
 import PreviewHomePage from '@/components/pages/home/preview-home.page';
+import { token } from '@/sanity/env';
 
 export default async function Home() {
   // Fetch home page modules
